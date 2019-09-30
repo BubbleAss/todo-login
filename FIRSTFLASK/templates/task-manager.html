@@ -1,0 +1,28 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='dashboard.css')}}">
+{% endblock %}
+
+{% block content %}
+
+<form action="/task-manager" method="POST">
+  <h2>Add item</h2>
+  {{ form.hidden_tag() }}
+  {{ wtf.form_field(form.content) }}
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Add item</button>
+</form>
+
+<ul>
+  {% for task in data %}
+  <li>{{ task.content }} --- <a href='/task-manager/delete/{{ task.id }}'>Delete</a> --- <a href='/task-manager/update/{{ task.id }}'>Update</a></li>
+  {% endfor %} 
+  </ul>
+
+{% endblock %}

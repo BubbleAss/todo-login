@@ -1,0 +1,19 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Sign Up
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+  <form method="POST" action="{{ url_for('update', id=id) }}">
+    <h2>Update</h2>
+    {{ form.csrf_token }}
+    {{ wtf.form_field(form.content) }}
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
+  </form>
+
+</div> <!-- /container -->
+{% endblock %}
